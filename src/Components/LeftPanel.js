@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addFolder,
@@ -19,6 +19,12 @@ function LeftPanel() {
   const dispatch = useDispatch();
   const [draggedFolder, setDraggedFolder] = useState(null);
   const [dragOverIndex, setDragOverIndex] = useState(null);
+
+  useEffect(() => {
+    if (folders.length > 0 && !selectedFolder) {
+      dispatch(selectFolder(folders[0].id));
+    }
+  }, [folders, selectedFolder]);
 
   const handleCreateFolder = (e) => {
     e.preventDefault();
@@ -78,7 +84,7 @@ function LeftPanel() {
           type="text"
           value={newFolderName}
           onChange={(e) => setNewFolderName(e.target.value)}
-          placeholder="Enter folder name"
+          placeholder="Create a new folder"
           className="border rounded p-1 mr-2"
         />
       </form>

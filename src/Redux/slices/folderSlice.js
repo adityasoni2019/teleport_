@@ -4,14 +4,19 @@ const updateLocalStorage = (state) => {
   localStorage.setItem('folders', JSON.stringify(state.folders));
   localStorage.setItem('favoriteFiles', JSON.stringify(state.favoriteFiles));
   localStorage.setItem('archivedFiles', JSON.stringify(state.archivedFiles));
-  // localStorage.setItem('selectedFolder', JSON.stringify(state.selectedFolder));
+};
+
+const defaultNotesFolder = {
+  id: 'default-notes',
+  name: 'Notes',
+  files: []
 };
 
 const folderSlice = createSlice({
   name: 'folders', // this ideally could be anything. 
   // as in, even if I change the name to anything else, it wouldn't matter. 
   initialState: {
-    folders: JSON.parse(localStorage.getItem('folders')) || [],
+    folders: JSON.parse(localStorage.getItem('folders')) || [defaultNotesFolder],
     // selectedFolder: JSON.parse(localStorage.getItem('selectedFolder')) || null,
     selectedFolder: null,
     selectedFile: null,

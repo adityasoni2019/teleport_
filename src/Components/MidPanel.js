@@ -84,7 +84,7 @@ function MidPanel() {
                 type="text"
                 value={newFileName}
                 onChange={(e) => setNewFileName(e.target.value)}
-                placeholder="Enter file name"
+                placeholder="Create a new file" // apparently this is a better nudge
                 className="border rounded p-1 mr-2"
               />
             </form>
